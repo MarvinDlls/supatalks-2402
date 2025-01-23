@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\EventRepository;
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -30,7 +31,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/changelog', name: 'app_changelog', methods: ['GET'])]
-    public function cgu(): Response
+    public function changelog(): Response
     {
         return $this->render('page/changelog.html.twig', [
             'controller_name' => 'changelog',

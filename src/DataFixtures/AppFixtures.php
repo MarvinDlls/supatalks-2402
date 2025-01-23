@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Event;
+use App\Entity\Post;
 use App\Entity\Speaker;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
@@ -95,6 +96,23 @@ class AppFixtures extends Fixture
                 ;
             $manager->persist($event);
         }
+
+        $userArray = [];
+        for ($i = 0; $i < 200; $i++) {
+            $userArray[] = $this->getReference('user_' . $i, User::class);
+        }
+
+        for ($i = 0; $i < 200; $i++) {
+            $post = new Post();
+            $post->setTitle($faker->jobTitle());
+            $post->setContent($faker->text());
+            $post->setImage(('https://picsum.photos/800/420?random=' . $i));
+            $post->setIsPublished($faker->boolean());
+            $post->setUser($faker->randomElement($userArray));
+
+            $manager->persist($post);
+        }
+
         
         $manager->flush();
     }
