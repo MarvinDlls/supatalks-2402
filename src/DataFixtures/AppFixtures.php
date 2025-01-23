@@ -23,6 +23,20 @@ class AppFixtures extends Fixture
             ;
         $manager->persist($user);
 
+        // Création des utilisateurs normaux
+        for ($i = 0; $i < 300; $i++) {
+            $user = new User();
+            $user
+                ->setEmail($faker->email)
+                ->setPassword('$2y$13$NJpGg/WaTYG0ONkZkf6tvuPVmkuexwRQqozQKsp5b8yc9z9B3ziMG') // user
+                ->setRoles(['ROLE_USER'])
+                ->setNickname($faker->name)
+            ;
+    
+            $this->addReference('user_' . $i, $user);
+            $manager->persist($user);
+        }
+
         // Création de 40 speakers
         $speakerImages = [
             'user1.jpg',
