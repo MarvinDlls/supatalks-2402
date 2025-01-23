@@ -25,3 +25,9 @@ h4, h5, h6 {
     background-color: var(--tertiary) !important;
     color: var(--primary) !important;
 }
+
+.pagination {
+    margin: auto;
+    width: fit-content;
+    gap: .75rem;
+}

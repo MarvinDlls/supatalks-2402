@@ -1,4 +1,28 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': true}}) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="h4 mb-0">Post Form</h2>
+                    </div>
+                    <div class="card-body">
+                        {% for field in form.children %}
+                            <div class="mb-3">
+                                {{ form_label(field, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(field, {'attr': {'class': 'invalid-feedback'}}) }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save me-2"></i>{{ button_label|default('Save') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {{ form_end(form) }}

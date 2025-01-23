@@ -104,12 +104,14 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 200; $i++) {
             $post = new Post();
-            $post->setTitle($faker->jobTitle());
-            $post->setContent($faker->text());
-            $post->setImage(('https://picsum.photos/800/420?random=' . $i));
-            $post->setIsPublished($faker->boolean());
-            $post->setUser($faker->randomElement($userArray));
-
+            $post->setTitle($faker->jobTitle())
+                ->setContent($faker->text())
+                ->setImage(('https://picsum.photos/800/420?random=' . $i))
+                ->setIsPublished($faker->boolean())
+                ->setUser($faker->randomElement($userArray))
+                ->setRef(uniqid())
+            ;
+            
             $manager->persist($post);
         }
 
